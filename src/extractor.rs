@@ -60,11 +60,12 @@ impl EpubExtractor {
         })
     }
 
-    pub fn extract<F>(&mut self, progress: F) -> Result<(), Box<dyn std::error::Error>>
+    pub fn extract<F>(&mut self, on_progress: F) -> Result<(), Box<dyn std::error::Error>>
     where
-        F: Fn(&str) -> (),
+        F: Fn(usize) -> (),
     {
         let mut count = 0;
+        let len = self.spine.len();
         for s in self.spine.iter() {
             let (html, _) = self.epub.get_resource_str(s).unwrap();
             let document = Html::parse_document(&html);
@@ -88,10 +89,11 @@ impl EpubExtractor {
                                     count,
                                     ext
                                 );
-                                progress(&output_path);
                                 let mut f = fs::File::create(&output_path)?;
                                 f.write_all(&data)?;
                                 count += 1;
+                                let progress = count * 100 / len;
+                                on_progress(progress);
                             }
                             None => continue,
                         }

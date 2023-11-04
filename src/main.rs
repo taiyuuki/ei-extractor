@@ -17,8 +17,28 @@ fn main() {
         // Get input epub path
         let input_epub = cwd.as_path().join(input);
         // Extract images
-        let mut extractor = extractor::EpubExtractor::new(input_epub.to_str().unwrap()).unwrap();
-        extractor.extract(|s| println!("{}", s)).unwrap();
-        println!("Done");
+        let extractor = extractor::EpubExtractor::new(input_epub.to_str().unwrap());
+        if extractor.is_none() {
+            println!(
+                "Not exist or not a valid epub file: {}",
+                input_epub.display()
+            );
+            return;
+        }
+        let mut extractor = extractor.unwrap();
+        println!("Extracting...");
+        extractor
+            .extract(|s| {
+                // Print progress
+                const BAR_CHARS: &str = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠇";
+                print!(
+                    "\r {} {}% \u{1b}[42m{}\u{1b}[0m",
+                    BAR_CHARS.chars().nth(s % 10).unwrap(),
+                    s,
+                    " ".repeat(s / 4),
+                );
+            })
+            .unwrap();
+        print!("\r Done \u{1b}[42m{}\u{1b}[0m", " ".repeat(20));
     }
 }
