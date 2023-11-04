@@ -1,8 +1,8 @@
 # EPUB Images extractor
 
-[![Build Status](https://travis-ci.org/taiyuuki/ei-extractor.svg?branch=master)](https://travis-ci.org/taiyuuki/ei-extractor)
+ei-extractor is a command tool to extract images from EPUB files and rename them in order.
 
-ei-extractor is a command tool to extract images from EPUB files. 
+> ei-extractor是一个命令工具，用于从EPUB文件中提取图片，并按顺序重命名。
 
 ## Download
 
