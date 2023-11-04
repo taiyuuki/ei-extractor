@@ -1,0 +1,17 @@
+[package]
+name = "ei-extractor"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+epub = "2.1.1"
+scraper = "0.18.1"
+clap = "4.4.7"
+
+[package.metadata.scripts]
+help = "cargo run -- -h"
+version = "cargo run -- -V"
+run = "cargo run -- test.epub"
+build = "cargo build --release"
