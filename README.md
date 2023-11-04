@@ -6,10 +6,10 @@ ei-extractor is a command tool to extract images from EPUB files and rename them
 
 ## Download
 
-- [Windows](https://github.com/taiyuuki/ei-extractor/releases/download/0.1.0/ei-extractor.exe)
+- [Windows](https://github.com/taiyuuki/ei-extractor/releases/download/v0.1.0/ei-extractor.exe)
 
 ```bash
-curl -L https://github.com/taiyuuki/ei-extractor/releases/download/0.1.0/ei-extractor.exe -o ei-extractor.exe
+curl https://github.com/taiyuuki/ei-extractor/releases/download/v0.1.0/ei-extractor.exe -o ei-extractor.exe
 ```
 
 ## Usage
