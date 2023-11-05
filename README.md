@@ -21,6 +21,7 @@ Arguments:
   <EPUB File>
 
 Options:
-  -h, --help     Print help
-  -V, --version  Print version
+  -i, --ignore <Ignore Size>  Ignore images smaller than the specified size in KB.
+  -h, --help                  Print help
+  -V, --version               Print version
 ```

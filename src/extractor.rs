@@ -11,6 +11,7 @@ pub struct EpubExtractor {
     spine: Vec<String>,
     image_paths: HashMap<String, String>,
     output_dir: String,
+    ignore_size: usize,
 }
 
 impl EpubExtractor {
@@ -57,7 +58,12 @@ impl EpubExtractor {
             spine,
             image_paths,
             output_dir,
+            ignore_size: 0,
         })
+    }
+
+    pub fn set_ignore_size(&mut self, size: usize) {
+        self.ignore_size = size;
     }
 
     pub fn extract<F>(&mut self, on_progress: F) -> Result<(), Box<dyn std::error::Error>>
@@ -82,6 +88,10 @@ impl EpubExtractor {
                         let resource = self.epub.get_resource_by_path(path);
                         match resource {
                             Some(data) => {
+                                // Ignore images smaller than the specified size.
+                                if data.len() < self.ignore_size * 1024 {
+                                    continue;
+                                }
                                 let output_path = format!(
                                     "{}{}{}.{}",
                                     &self.output_dir,
