@@ -1,12 +1,12 @@
 # EPUB Images extractor
 
-ei-extractor is a command tool to extract images from EPUB files and rename them in order.
+ei-extractor is a command tool to extract images from EPUB comic and rename them in order.
 
-> ei-extractor是一个命令工具，用于从EPUB文件中提取图片，并按顺序重命名。
+ei-extractor是一个命令行工具，用于从ePub漫画中提取图片，并按顺序重命名。
 
 ## Download
 
-- [Windows](https://github.com/taiyuuki/ei-extractor/releases/download/v0.1.0/ei-extractor.exe)
+- [Windows](../../releases/download/v0.1.0/ei-extractor.exe)
 
 ```bash
 curl https://github.com/taiyuuki/ei-extractor/releases/download/v0.1.0/ei-extractor.exe -o ei-extractor.exe

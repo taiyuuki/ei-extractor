@@ -15,13 +15,9 @@ pub struct EpubExtractor {
 }
 
 impl EpubExtractor {
-    pub fn new(full_path: &str) -> Option<EpubExtractor> {
-        let epub = EpubDoc::new(full_path);
+    pub fn new(full_path: &str) -> Result<EpubExtractor, Box<dyn std::error::Error>> {
+        let epub = EpubDoc::new(full_path)?;
         let path = Path::new(full_path);
-        if epub.is_err() {
-            return None;
-        }
-        let epub = epub.unwrap();
         let mut spine = Vec::with_capacity(epub.spine.len());
         let title = match epub.mdata("title") {
             Some(t) => t,
@@ -53,7 +49,7 @@ impl EpubExtractor {
             }
         }
 
-        Some(EpubExtractor {
+        Ok(EpubExtractor {
             epub,
             spine,
             image_paths,
@@ -102,8 +98,7 @@ impl EpubExtractor {
                                 let mut f = fs::File::create(&output_path)?;
                                 f.write_all(&data)?;
                                 count += 1;
-                                let progress = count * 100 / len;
-                                on_progress(progress);
+                                on_progress(count * 100 / len);
                             }
                             None => continue,
                         }
