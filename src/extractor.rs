@@ -25,8 +25,10 @@ impl EpubExtractor {
         };
         let dir = path.parent().unwrap();
         let output_dir = format!(
-            "{}{}{}",
+            "{}{}{}{}{}",
             dir.to_str().unwrap(),
+            std::path::MAIN_SEPARATOR,
+            "output",
             std::path::MAIN_SEPARATOR,
             title
         );
@@ -97,8 +99,6 @@ impl EpubExtractor {
                                 );
                                 let mut f = fs::File::create(&output_path)?;
                                 f.write_all(&data)?;
-                                count += 1;
-                                on_progress(count * 100 / len);
                             }
                             None => continue,
                         }
@@ -106,6 +106,8 @@ impl EpubExtractor {
                     None => continue,
                 }
             }
+            count += 1;
+            on_progress(count * 100 / len);
         }
         Ok(())
     }
