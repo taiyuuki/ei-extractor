@@ -69,6 +69,7 @@ impl EpubExtractor {
         F: Fn(usize) -> (),
     {
         let mut count = 0;
+        let mut progress = 0;
         let len = self.spine.len();
         for s in self.spine.iter() {
             let (html, _) = self.epub.get_resource_str(s).unwrap();
@@ -99,6 +100,7 @@ impl EpubExtractor {
                                 );
                                 let mut f = fs::File::create(&output_path)?;
                                 f.write_all(&data)?;
+                                count += 1;
                             }
                             None => continue,
                         }
@@ -106,8 +108,8 @@ impl EpubExtractor {
                     None => continue,
                 }
             }
-            count += 1;
-            on_progress(count * 100 / len);
+            progress += 1;
+            on_progress(progress * 100 / len);
         }
         Ok(())
     }
