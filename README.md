@@ -6,13 +6,11 @@ ei-extractor是一个命令行工具，用于从ePub漫画中提取图片，并�
 
 ## Download
 
-- [Windows](../../releases/download/v0.1.0/ei-extractor.exe)
-
-```bash
-curl https://github.com/taiyuuki/ei-extractor/releases/download/v0.1.0/ei-extractor.exe -o ei-extractor.exe
-```
+- [Download](../../releases/download/latest)
 
 ## Usage
+
+Example on Windows:
 
 ```bash
 Usage: ei-extractor.exe <EPUB File>
