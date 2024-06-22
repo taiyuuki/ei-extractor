@@ -6,7 +6,7 @@ ei-extractor是一个命令行工具，用于从ePub漫画中提取图片，并�
 
 ## Download
 
-- [Download](../../releases/latest/download)
+- [Download](../../releases/latest)
 
 ## Usage
 
